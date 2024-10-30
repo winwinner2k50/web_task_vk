@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3" style="height: 80px;">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            
+            <a class="navbar-brand" href="#">Почему онлайн</a>
+    
+            <form class="d-flex align-items-center" style="position: absolute; left: 50%; transform: translateX(-50%);">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="height: 40px; width: 200px;">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+    
+            <div class="d-flex align-items-center">
+
+                <img src="static/img/image.png" alt="Avatar" class="rounded-circle" style="width: 60px; height: 60px; margin-right: 10px;">
+                <div class="d-flex flex-column ms-2">
+                    <p class="mb-1">Человек Человекович</p>  
+                    <a href="#" class="card-link">Настройки</a>
+                    <a href="#" class="card-link">Выйти </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="row gap-3 w-100">
+        
+        <div class="col-7 ms-5">
+            <div class="mb-5">
+                <span class="fs-2">Настройки: </span>
+                <span class="fs-2 ms-3">Человек Человекович</span>
+            </div>
+
+            <div class="row g-3 align-items-start mb-3">
+                <div class="col-2">
+                  <label for="inputlogin" class="col-form-label">Логин</label>
+                </div>
+                <div class="col-5">
+                  <input type="login" id="inputlogin" class="form-control" title="Введите свой уникальный логин">
+                </div>
+            </div>
+            
+            <div class="row g-3 align-items-start mb-3">
+                <div class="col-2">
+                  <label for="inputmail" class="col-form-label">Эл. Почта</label>
+                </div>
+                <div class="col-5">
+                    <input type="mail" id="inputmail" class="form-control" title="Введите свою электронную почту">
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-start mb-3">
+                <div class="col-2">
+                  <label for="inputnick" class="col-form-label">Имя</label>
+                </div>
+                <div class="col-5">
+                  <input type="nick" id="inputnick" class="form-control" title="Введите своё имя которое будет отображаться на сайте">
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-start mb-3">
+                <div class="col-2">
+                  <label for="inputavatar" class="col-form-label">Аватар</label>
+                </div>
+                <div class="col-5">
+                    <img src="static/img/image.png" id="inputavatar" class="img-fluid w-50" alt="avatar image">
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-start mb-3">
+                <div class="col-2">
+                  
+                </div>
+                <div class="col-5">
+                    <div class="input-group">
+                        <input class="form-control" type="file" id="formFile" title="Нажмите, чтобы выбрать файл">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-start mb-3">
+                <div class="col-2">
+                  
+                </div>
+                <div class="col-5">
+                    <button class="btn btn-primary" type="submit">Сохранить</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="mb-5">
+                <p class="fs-2">Популярные теги</p>
+                <button type="button" class="btn btn-primary mb-1 ">Почему не работает код</button>
+                <button type="button" class="btn btn-secondary mb-1">Как включить пк</button>
+                <button type="button" class="btn btn-success mb-1">Что делаеть если...</button>
+                <button type="button" class="btn btn-danger mb-1">Как кушать</button>
+                <button type="button" class="btn btn-warning mb-1">Какие пары полезные?</button>
+                <button type="button" class="btn btn-info mb-1">9 долгов, закроюсь?</button>
+                <button type="button" class="btn btn-primary mb-1">Программисты</button>
+            </div>
+            <div class="mb-5">
+                <p class="fs-2">Популярные спикеры</p>
+                <div style="display: flex; flex-direction: column;">
+                    <a href="#" class="mb-1 fs-5">Человек Человекович</a>
+                    <a href="#" class="mb-1 fs-5">СММщица из вышки</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+      
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
