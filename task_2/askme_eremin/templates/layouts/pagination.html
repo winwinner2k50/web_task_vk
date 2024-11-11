@@ -1,0 +1,42 @@
+<nav aria-label="Page navigation" class="ms-5">
+    <ul class="pagination">
+        <!-- Кнопка для перехода на предыдущую страницу -->
+        {% if questions.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ questions.previous_page_number }}">Предыдущая</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">Предыдущая</span>
+            </li>
+        {% endif %}
+
+        <!-- Ссылка на предыдущую страницу, если она существует и не равна 1 -->
+        {% if questions.number > 1 %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ questions.number|add:"-1" }}">{{ questions.number|add:"-1" }}</a>
+            </li>
+        {% endif %}
+
+        <!-- Текущая страница -->
+        <li class="page-item active" aria-current="page">
+            <span class="page-link">{{ questions.number }}</span>
+        </li>
+
+        {% if questions.number < questions.paginator.num_pages %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ questions.number|add:"1" }}">{{ questions.number|add:"1" }}</a>
+            </li>
+        {% endif %}
+
+        {% if questions.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ questions.next_page_number }}">Следующая</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">Следующая</span>
+            </li>
+        {% endif %}
+    </ul>
+</nav>

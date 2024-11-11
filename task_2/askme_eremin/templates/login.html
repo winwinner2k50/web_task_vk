@@ -1,0 +1,51 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block login %}
+    <div class="d-flex ms-2">
+        <a href="{% url 'login' %}" class="card-link">Войти</a>
+        <a href="{% url 'signup' %}"  class="card-link ms-4">Зарегистрироваться</a>
+    </div>
+{% endblock %}
+
+{% block heading_question %}
+    <div class="mb-5">
+        <span class="fs-2">Вход </span>
+    </div>
+
+    <div class="mb-2">
+        <span class="text-danger">Ошибка входа </span>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row g-3 align-items-start mb-3">
+        <div class="col-2">
+        <label for="inputlogin" class="col-form-label">Логин</label>
+        </div>
+        <div class="col-5">
+        <input type="login" id="inputlogin" class="form-control" title="Введите свой уникальный логин">
+        </div>
+    </div>
+
+
+    <div class="row g-3 align-items-start mb-3">
+        <div class="col-2">
+        <label for="inputnick" class="col-form-label">Пароль</label>
+        </div>
+        <div class="col-5">
+        <input type="password" class="form-control" id="inputPassword4" title="Введите свой пароль">
+        </div>
+    </div>
+
+    <div class="row g-3 align-items-start mb-3">
+        <div class="col-2">
+        
+        </div>
+        <div class="col-5">
+            <button class="btn btn-primary" type="submit">Войти</button>
+        </div>
+    </div>
+
+{% endblock %}

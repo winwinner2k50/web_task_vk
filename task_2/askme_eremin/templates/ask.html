@@ -1,0 +1,59 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block login %}
+    <div class="d-flex ms-2">
+        <a href="{% url 'login' %}" class="card-link">Войти</a>
+        <a href="{% url 'signup' %}"  class="card-link ms-4">Зарегистрироваться</a>
+    </div>
+{% endblock %}
+
+{% block heading_question %}
+    <div class="mb-5">
+        <span class="fs-2">Новый вопрос</span>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+<div class="mb-2">
+    <span class="text-danger">Не указан ни один тег</span>
+</div>
+
+<div class="row g-3 align-items-start mb-3">
+    <div class="col-2">
+      <label for="inputtitle" class="col-form-label">Заголовок</label>
+    </div>
+    <div class="col-8">
+      <input type="title" id="inputtitle" class="form-control" title="Введите заголовок вопроса">
+    </div>
+</div>
+
+<div class="row g-3 align-items-start mb-3">
+    <div class="col-2">
+      <label for="inputtitle" class="col-form-label">Текст вопроса</label>
+    </div>
+    <div class="col-8">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="12" title="Введите что хотите спросить"></textarea>
+    </div>
+</div>
+
+<div class="row g-3 align-items-start mb-3">
+    <div class="col-2">
+      <label for="inputtitle" class="col-form-label">Теги</label>
+    </div>
+    <div class="col-8">
+      <input type="title" id="inputtitle" class="form-control" title="Введите теги которым соответствует ваш вопрос">
+    </div>
+</div>
+
+<div class="row g-3 align-items-start mb-3">
+    <div class="col-2">
+      
+    </div>
+    <div class="col-7">
+        <button type="button" class="btn btn-primary mb-1 ms-">Озадачиться</button>
+    </div>
+</div>
+
+{% endblock %}
