@@ -1,27 +1,27 @@
 {% load static %}
 <div class="row mb-3 w-100 bg-light p-3 d-flex card-body">
     <div class="col-2">
-        <img src="{% static 'img/image.png' %}" alt="..." class="img-fluid ing-thumbnail mb-2">
+        <img src="{% static 'img/image.png' %}" alt="..." class="img-fluid img-thumbnail mb-2">
         <div class="d-flex flex-column">
             <input class="form-control mb-2" type="number" value="5" placeholder="Поле ввода по умолчанию" aria-label="пример ввода по умолчанию">
-            <button class="btn btn-primary" type="submit">10 ♥</button>
+            <button class="btn btn-primary" type="submit">{{ question.likes_count }}</button>
         </div>
     </div>
-    <div class="col-9  d-flex flex-column ms-1">
-        <a href="{% url 'question' questions.id %}" class="card-title mb-3">
-            <h5>{{ questions.title }}</h5>
+    <div class="col-9 d-flex flex-column ms-1">
+        <a href="{% url 'question' question_id=question.id %}" class="card-title mb-3">
+            <h5>{{ question.heading_question  }}</h5>
         </a>
-        <p class="card-text">gcc выдаёт ошибку bash: gcc: command not found    Что это? стоит ли мне продолжить прогать на си или может лучше питон...</p>
+        <p class="card-text">{{ question.question_text  }}</p>
         <div class="row w-100 mt-auto">
             <div class="col-5">
-               
-                <a href="#" class="card-link">Ответы</a>
+                <a href="{% url 'question' question_id=question.id %}" class="card-link">Ответы</a>
             </div>
             <div class="col-5">
                 <div>
-                    
                     <span>Тег: </span>
-                    <a href="{% url 'tag' 1 %}" class="card-link">Си</a>
+                    {% for question_tag in question.questiontag_set.all %}
+                        <a href="{% url 'tag' %}?name={{ question_tag.tag.tag_name }}" class="card-link">{{ question_tag.tag.tag_name }}</a>{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>

@@ -2,12 +2,22 @@
 {% load static %}
 
 {% block login %}
-    <img src="{% static 'img/image.png' %}" alt="Avatar" class="rounded-circle" style="width: 60px; height: 60px; margin-right: 10px;">
-    <div class="d-flex flex-column ms-2">
-        <p class="mb-1">Человек Человекович</p>  
-        <a href="{% url 'settings' %}" class="card-link">Настройки</a>
-        <a href="#" class="card-link">Выйти </a>
-    </div>
+    {% if user.is_authenticated %}
+        <img src="{% static 'img/image.png' %}" alt="Avatar" class="rounded-circle" style="width: 60px; height: 60px; margin-right: 10px;">
+        <div class="d-flex flex-column ms-2">
+            <p class="mb-1">{{ user.username }}</p>
+            <a href="{% url 'settings' %}" class="card-link">Настройки</a>
+            <a href="#" class="card-link" onclick="document.getElementById('logout-form').submit(); return false;">Выйти</a>
+            <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
+                {% csrf_token %}
+            </form>
+        </div>
+    {% else %}
+        <div class="d-flex ms-2">
+            <a href="{% url 'login' %}" class="card-link">Войти</a>
+            <a href="{% url 'signup' %}" class="card-link ms-4">Зарегистрироваться</a>
+        </div>
+    {% endif %}
 {% endblock %}
 
 {% block heading_question %}
@@ -19,7 +29,7 @@
 
 {% block content %}
 
-    {% for questions in questions %}
+    {% for question in questions %}
 
         {% include "layouts/question.html" %}
 

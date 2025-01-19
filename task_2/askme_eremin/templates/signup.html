@@ -4,7 +4,7 @@
 {% block login %}
     <div class="d-flex ms-2">
         <a href="{% url 'login' %}" class="card-link">Войти</a>
-        <a href="{% url 'signup' %}"  class="card-link ms-4">Зарегистрироваться</a>
+        <a href="{% url 'signup' %}" class="card-link ms-4">Зарегистрироваться</a>
     </div>
 {% endblock %}
 
@@ -15,74 +15,73 @@
 {% endblock %}
 
 {% block content %}
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
 
-<div class="mb-2">
-  <span class="text-danger">Ошибка регистрации </span>
-</div>
+    <div class="mb-2">
+      <span class="text-danger">{{ form.non_field_errors }}</span>
+    </div>
 
-<div class="row g-3 align-items-start mb-3">
-    <div class="col-2">
-      <label for="inputlogin" class="col-form-label">Логин</label>
+    <div class="row g-3 align-items-start mb-3">
+        <div class="col-2">
+          <label for="{{ form.username.id_for_label }}" class="col-form-label">Логин</label>
+        </div>
+        <div class="col-5">
+          {{ form.username }}
+        </div>
     </div>
-    <div class="col-5">
-      <input type="login" id="inputlogin" class="form-control" title="Введите свой уникальный логин">
-    </div>
-</div>
 
-<div class="row g-3 align-items-start mb-3">
-    <div class="col-2">
-      <label for="inputmail" class="col-form-label">Эл. Почта</label>
+    <div class="row g-3 align-items-start mb-3">
+        <div class="col-2">
+          <label for="{{ form.email.id_for_label }}" class="col-form-label">Эл. Почта</label>
+        </div>
+        <div class="col-5">
+            {{ form.email }}
+        </div>
     </div>
-    <div class="col-5">
-        <input type="mail" id="inputmail" class="form-control" title="Введите свою электронную почту">
-    </div>
-</div>
 
-<div class="row g-3 align-items-start mb-3">
-    <div class="col-2">
-      <label for="inputnick" class="col-form-label">Имя</label>
+    <div class="row g-3 align-items-start mb-3">
+        <div class="col-2">
+          <label for="{{ form.first_name.id_for_label }}" class="col-form-label">Имя</label>
+        </div>
+        <div class="col-5">
+          {{ form.first_name }}
+        </div>
     </div>
-    <div class="col-5">
-      <input type="nick" id="inputnick" class="form-control" title="Введите своё имя которое будет отображаться на сайте">
-    </div>
-</div>
 
-<div class="row g-3 align-items-start mb-3">
-    <div class="col-2">
-      <label for="inputnick" class="col-form-label">Пароль</label>
+    <div class="row g-3 align-items-start mb-3">
+        <div class="col-2">
+          <label for="{{ form.password.id_for_label }}" class="col-form-label">Пароль</label>
+        </div>
+        <div class="col-5">
+          {{ form.password }}
+        </div>
     </div>
-    <div class="col-5">
-      <input type="password" class="form-control" id="inputPassword4" title="Введите свой пароль">
-    </div>
-</div>
 
-<div class="row g-3 align-items-start mb-3">
-    <div class="col-2">
-      <label for="inputnick" class="col-form-label">Подтверждение</label>
+    <div class="row g-3 align-items-start mb-3">
+        <div class="col-2">
+          <label for="{{ form.confirm_password.id_for_label }}" class="col-form-label">Подтверждение</label>
+        </div>
+        <div class="col-5">
+          {{ form.confirm_password }}
+        </div>
     </div>
-    <div class="col-5">
-      <input type="password" class="form-control" id="inputPassword4" title="Введите свой пароль ещё раз">
-    </div>
-</div>
 
-
-
-<div class="row g-3 align-items-start mb-3">
-    <div class="col-2">
-      <label for="inputavatar" class="col-form-label">Аватар</label>
+    <div class="row g-3 align-items-start mb-3">
+        <div class="col-2">
+          <label for="{{ form.avatar.id_for_label }}" class="col-form-label">Аватар</label>
+        </div>
+        <div class="col-5">
+          {{ form.avatar }}
+        </div>
     </div>
-    <div class="col-5">
-      <input class="form-control" type="file" id="formFile" title="Нажмите, чтобы выбрать файл">
-    </div>
-</div>
 
-<div class="row g-3 align-items-start mb-3">
-    <div class="col-2">
-      
+    <div class="row g-3 align-items-start mb-3">
+        <div class="col-2"></div>
+        <div class="col-5">
+            <button class="btn btn-primary" type="submit">Зарегистрироваться</button>
+        </div>
     </div>
-    <div class="col-5">
-        <button class="btn btn-primary" type="submit">Зарегистрироваться</button>
-    </div>
-</div>
 
+  </form>
 {% endblock %}

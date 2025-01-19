@@ -15,45 +15,53 @@
 {% endblock %}
 
 {% block content %}
+    <!-- Сообщение об ошибке, если теги не указаны -->
+    {% if form.non_field_errors %}
+        <div class="mb-2">
+            <span class="text-danger">{{ form.non_field_errors }}</span>
+        </div>
+    {% endif %}
 
-<div class="mb-2">
-    <span class="text-danger">Не указан ни один тег</span>
-</div>
+    <!-- Форма для создания вопроса -->
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
 
-<div class="row g-3 align-items-start mb-3">
-    <div class="col-2">
-      <label for="inputtitle" class="col-form-label">Заголовок</label>
-    </div>
-    <div class="col-8">
-      <input type="title" id="inputtitle" class="form-control" title="Введите заголовок вопроса">
-    </div>
-</div>
+        <!-- Заголовок вопроса -->
+        <div class="row g-3 align-items-start mb-3">
+            <div class="col-2">
+                <label for="id_heading_question" class="col-form-label">Заголовок</label>
+            </div>
+            <div class="col-8">
+                {{ form.heading_question }} <!-- Здесь используем поле из формы -->
+            </div>
+        </div>
 
-<div class="row g-3 align-items-start mb-3">
-    <div class="col-2">
-      <label for="inputtitle" class="col-form-label">Текст вопроса</label>
-    </div>
-    <div class="col-8">
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="12" title="Введите что хотите спросить"></textarea>
-    </div>
-</div>
+        <!-- Текст вопроса -->
+        <div class="row g-3 align-items-start mb-3">
+            <div class="col-2">
+                <label for="id_question_text" class="col-form-label">Текст вопроса</label>
+            </div>
+            <div class="col-8">
+                {{ form.question_text }} <!-- Здесь используем поле из формы -->
+            </div>
+        </div>
 
-<div class="row g-3 align-items-start mb-3">
-    <div class="col-2">
-      <label for="inputtitle" class="col-form-label">Теги</label>
-    </div>
-    <div class="col-8">
-      <input type="title" id="inputtitle" class="form-control" title="Введите теги которым соответствует ваш вопрос">
-    </div>
-</div>
+        <!-- Теги -->
+        <div class="row g-3 align-items-start mb-3">
+            <div class="col-2">
+                <label for="id_tags" class="col-form-label">Теги</label>
+            </div>
+            <div class="col-8">
+                {{ form.tags }} <!-- Здесь используем поле для тегов из формы -->
+            </div>
+        </div>
 
-<div class="row g-3 align-items-start mb-3">
-    <div class="col-2">
-      
-    </div>
-    <div class="col-7">
-        <button type="button" class="btn btn-primary mb-1 ms-">Озадачиться</button>
-    </div>
-</div>
-
+        <!-- Кнопка отправки -->
+        <div class="row g-3 align-items-start mb-3">
+            <div class="col-2"></div>
+            <div class="col-7">
+                <button type="submit" class="btn btn-primary mb-1 ms-">Озадачиться</button>
+            </div>
+        </div>
+    </form>
 {% endblock %}

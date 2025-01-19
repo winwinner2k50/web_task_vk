@@ -2,86 +2,98 @@
 {% load static %}
 
 {% block login %}
-    <img src="{% static 'img/image.png' %}" alt="Avatar" class="rounded-circle" style="width: 60px; height: 60px; margin-right: 10px;">
-    <div class="d-flex flex-column ms-2">
-        <p class="mb-1">Человек Человекович</p>  
-        <a href="{% url 'settings' %}" class="card-link">Настройки</a>
-        <a href="#" class="card-link">Выйти </a>
+    <div class="d-flex ms-2">
+        <a href="{% url 'login' %}" class="card-link">Войти</a>
+        <a href="{% url 'signup' %}"  class="card-link ms-4">Зарегистрироваться</a>
     </div>
 {% endblock %}
 
 {% block heading_question %}
-    <div class="row w-100  p-3 d-flex card-body">
-        <div class="col-2">
-            <img src="{% static 'img/image.png' %}" alt="..." class="img-fluid ing-thumbnail mb-2">
-            <div class="d-flex flex-column">
-                <input class="form-control mb-2" type="number" value="5" placeholder="Поле ввода по умолчанию" aria-label="пример ввода по умолчанию">
-                <button class="btn btn-primary" type="submit">10 ♥</button>
-            </div>
-        </div>
-        <div class="col-9  d-flex flex-column ms-1">
-            <h5 class="card-title">Почему не работает си</h5>
-            <p class="card-text">gcc выдаёт ошибку bash: gcc: command not found    Что это? стоит ли мне продолжить прогать на си или может лучше питон...</p>
-            <div class="mt-auto">
-                <span>Тег: </span>
-                <a href="#" class="card-link mt-auto">Си</a> 
-            </div>
-            
-        </div>
+    <div class="mb-5">
+        <span class="fs-2">Новый вопрос</span>
     </div>
 {% endblock %}
 
 {% block content %}
+    <!-- Сообщение об ошибке, если теги не указаны -->
+    {% if form.non_field_errors %}
+        <div class="mb-2">
+            <span class="text-danger">{{ form.non_field_errors }}</span>
+        </div>
+    {% endif %}
 
-    <div class="row mb-3 w-100 bg-light p-3 d-flex card-body">
-        <div class="col-2">
-            <img src="{% static 'img/image.png' %}" alt="..." class="img-fluid ing-thumbnail mb-2 w-75">
-            <div class="d-flex flex-column w-75">
-                <input class="form-control mb-2" type="number" value="5" placeholder="Поле ввода по умолчанию" aria-label="пример ввода по умолчанию">
-                <button class="btn btn-primary" type="submit">10 ♥</button>
+    <!-- Сообщение об ошибке тегов -->
+    {% if errors %}
+        <div class="mb-3">
+            <ul class="text-danger">
+                {% for error in errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <!-- Форма для создания вопроса -->
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Заголовок вопроса -->
+        <div class="row g-3 align-items-start mb-3">
+            <div class="col-2">
+                <label for="id_heading_question" class="col-form-label">Заголовок</label>
+            </div>
+            <div class="col-8">
+                {{ form.heading_question }} <!-- Здесь используем поле из формы -->
+                {% if form.heading_question.errors %}
+                    <div class="text-danger">
+                        {% for error in form.heading_question.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         </div>
-        <div class="col-9  d-flex flex-column">
-            <p class="card-text">Больше не прогай...</p>
-            <div class="form-check mt-auto">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Правильно
-                </label>
+
+        <!-- Текст вопроса -->
+        <div class="row g-3 align-items-start mb-3">
+            <div class="col-2">
+                <label for="id_question_text" class="col-form-label">Текст вопроса</label>
+            </div>
+            <div class="col-8">
+                {{ form.question_text }} <!-- Здесь используем поле из формы -->
+                {% if form.question_text.errors %}
+                    <div class="text-danger">
+                        {% for error in form.question_text.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         </div>
-    </div>
 
-    <div class="row mb-3 w-100 bg-light p-3 d-flex card-body">
-        <div class="col-2">
-            <img src="{% static 'img/image.png' %}" alt="..." class=" d-flex img-fluid ing-thumbnail mb-2 w-75">
-            <div class="d-flex flex-column w-75">
-                <input class="form-control mb-2" type="number" value="5" placeholder="Поле ввода по умолчанию" aria-label="пример ввода по умолчанию">
-                <button class="btn btn-primary" type="submit">10 ♥</button>
+        <!-- Теги -->
+        <div class="row g-3 align-items-start mb-3">
+            <div class="col-2">
+                <label for="id_tags" class="col-form-label">Теги</label>
+            </div>
+            <div class="col-8">
+                {{ form.tags }} <!-- Здесь используем поле для тегов из формы -->
+                {% if form.tags.errors %}
+                    <div class="text-danger">
+                        {% for error in form.tags.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         </div>
-        <div class="col-9  d-flex flex-column">
-            <p class="card-text">2 часа ночи не пиши сюда</p>
-            <div class="form-check mt-auto">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Правильно
-                </label>
+
+        <!-- Кнопка отправки -->
+        <div class="row g-3 align-items-start mb-3">
+            <div class="col-2"></div>
+            <div class="col-7">
+                <button type="submit" class="btn btn-primary mb-1 ms-">Озадачиться</button>
             </div>
         </div>
-    </div>
-
-{% endblock %}
-
-{% block end %}
-    <div class="row gap-3 w-100">
-        <div class="col-7 ms-5">
-            <hr class="my-4 border-primary">
-
-            <div class="mb-3 w-100 bg-light p-3 card-body">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
-                <button class="btn btn-primary mt-2" type="submit">Ответить</button>
-            </div>
-        </div>
-    </div>
+    </form>
 {% endblock %}
